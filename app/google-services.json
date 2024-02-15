@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "935051326007",
+    "project_id": "textit-26214",
+    "storage_bucket": "textit-26214.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935051326007:android:bf4fbafc010c6dc944c5b2",
+        "android_client_info": {
+          "package_name": "com.dhairyaparikh.textit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAETzOyA5HUc7NuXdEj-ICUqsqzkAg1YF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
