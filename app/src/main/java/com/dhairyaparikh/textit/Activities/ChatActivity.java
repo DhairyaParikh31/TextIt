@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.dhairyaparikh.textit.Adapters.MessagesAdapter;
 import com.dhairyaparikh.textit.Models.Message;
+import com.dhairyaparikh.textit.R;
 import com.dhairyaparikh.textit.databinding.ActivityChatBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,6 +60,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
         String name = getIntent().getStringExtra("name");
+        String profile = getIntent().getStringExtra("image");
         receiverUid = getIntent().getStringExtra("uid");
         senderUid = FirebaseAuth.getInstance().getUid();
 
@@ -66,7 +69,16 @@ public class ChatActivity extends AppCompatActivity {
         adapter = new MessagesAdapter(this,messages,senderRoom, receiverRoom);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);
-
+        binding.name.setText(name);
+        Glide.with(ChatActivity.this).load(profile)
+                .placeholder(R.drawable.avatar)
+                .into(binding.profile);
+        binding.imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -141,9 +153,9 @@ public class ChatActivity extends AppCompatActivity {
                 startActivityForResult(intent,25);
             }
         });
-
-        getSupportActionBar().setTitle(name);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().hide();
+//        getSupportActionBar().setTitle(name);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
