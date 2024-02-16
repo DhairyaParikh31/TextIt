@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
@@ -226,7 +227,11 @@ public class ChatActivity extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.chat_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
     @Override
     public boolean onSupportNavigateUp() {
         finish();
