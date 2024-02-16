@@ -59,7 +59,8 @@ public class ChatActivity extends AppCompatActivity {
         dialog.setMessage("Uploading Image....");
         dialog.setCancelable(false);
 
-
+        database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
         String name = getIntent().getStringExtra("name");
         String profile = getIntent().getStringExtra("image");
         receiverUid = getIntent().getStringExtra("uid");
@@ -80,9 +81,24 @@ public class ChatActivity extends AppCompatActivity {
                 finish();
             }
         });
+        database.getReference().child("presence").child(receiverUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String status = snapshot.getValue(String.class);
+                    if (!status.isEmpty()) {
+                        binding.status.setText(status);
+                        binding.status.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
 
-        database = FirebaseDatabase.getInstance();
-        storage = FirebaseStorage.getInstance();
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         database.getReference().child("chats")
                 .child(senderRoom)
                 .child("messages")
@@ -227,6 +243,13 @@ public class ChatActivity extends AppCompatActivity {
             }
         }
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String currentID = FirebaseAuth.getInstance().getUid();
+        database.getReference().child("presence").child(currentID).setValue("Online");
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chat_menu, menu);
