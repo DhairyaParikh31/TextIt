@@ -224,6 +224,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (itemId == R.id.settings) {
             Toast.makeText(this, "Settings Clicked", Toast.LENGTH_SHORT).show();
         }
+        else if(itemId == R.id.groups){
+            startActivity(new Intent(MainActivity.this,GroupChatActivity.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 
