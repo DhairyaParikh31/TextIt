@@ -46,7 +46,7 @@ dependencies {
     implementation ("com.github.pgreze:android-reactions:1.3")
     implementation ("com.github.3llomi:CircularStatusView:V1.0.3")
     implementation ("com.github.OMARIHAMZA:StoryView:1.0.2-alpha")
-
+    implementation("com.google.firebase:firebase-messaging")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
